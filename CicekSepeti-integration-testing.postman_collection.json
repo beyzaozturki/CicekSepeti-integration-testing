@@ -2,42 +2,186 @@
 	"info": {
 		"_postman_id": "6f93195e-4137-4e96-971a-a80a4fa66399",
 		"name": "CicekSepeti-integration-testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "ANKARA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var cityName = pm.request.url.getQueryString()\r",
+							"var expectedResp = \"cityName=ankara\"\r",
+							"\r",
+							"var result = tests [\"Check response is true\"] = _.isEqual(expectedResp,cityName)\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\tpm.test(\"Comment list for ANKARA\", function () {\r",
+							"\t\tfor ( var i = 0 ; i < jsonData.reviewDtos.length ; i ++ ) {\r",
+							"\t\t\tif ( jsonData.reviewDtos[i].cityName == \"ankara\" ) {\r",
+							"\t\t\t\tconsole.log(jsonData.reviewDtos[i].comment)\r",
+							"\t\t\t}\r",
+							"\t\t\telse console.error(jsonData.reviewDtos[i].cityName+ \"not in the correct directory\" )\r",
+							"\t    }\r",
+							"\t});\r",
+							"\t\t\t\t\t\t\t\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://www.getpostman.com/collections/c0a484250e8d7efbafa0?cityName=ankara",
+					"protocol": "https",
+					"host": [
+						"www",
+						"getpostman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"c0a484250e8d7efbafa0"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "ankara"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "İSTANBUL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var cityName = pm.request.url.getQueryString()\r",
+							"var urlcheck = \"cityName=istanbul\"\r",
+							"\r",
+							"var result = tests [\"Check response is true\"] = _.isEqual(urlcheck,cityName)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://www.getpostman.com/collections/c0a484250e8d7efbafa0?cityName=istanbul",
+					"protocol": "https",
+					"host": [
+						"www",
+						"getpostman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"c0a484250e8d7efbafa0"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "istanbul"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "VAN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response Control for Status Code : 404\", () => {\r",
+							"\tpm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"var cityName = pm.request.url.getQueryString()\r",
+							"var expectedResp = \"cityName=van\"\r",
+							"var result = tests [\"Check response is true\"] = _.isEqual(expectedResp,cityName)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://www.getpostman.com/collections/c0a484250e8d7efbafa0?cityName=van",
+					"protocol": "https",
+					"host": [
+						"www",
+						"getpostman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"c0a484250e8d7efbafa0"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "van"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "STATUS NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"\t pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://www.getpostman.com/collections/c0a484250e8d7efbafa0?cityName=null",
+					"protocol": "https",
+					"host": [
+						"www",
+						"getpostman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"c0a484250e8d7efbafa0"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "null"
+						}
+					]
+				}
 			},
 			"response": []
 		}
