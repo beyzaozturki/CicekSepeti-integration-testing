@@ -69,6 +69,17 @@
 							"var urlcheck = \"cityName=istanbul\"\r",
 							"\r",
 							"var result = tests [\"Check response is true\"] = _.isEqual(urlcheck,cityName)\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\tpm.test(\"Comment list for ANKARA\", function () {\r",
+							"\t\tfor ( var i = 0 ; i < jsonData.reviewDtos.length ; i ++ ) {\r",
+							"\t\t\tif ( jsonData.reviewDtos[i].cityName == \"ankara\" ) {\r",
+							"\t\t\t\tconsole.log(jsonData.reviewDtos[i].comment)\r",
+							"\t\t\t}\r",
+							"\t\t\telse console.error(jsonData.reviewDtos[i].cityName+ \"not in the correct directory\" )\r",
+							"\t    }\r",
+							"\t});\r",
+							"\t\t\t\t\t\t\t\r",
 							""
 						],
 						"type": "text/javascript"
